@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNIST Digit Recognition</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="wrapper">
+
+
+        <div class="container m-auto">
+    
+            <h1 class="lg:text-4xl text-2xl font-semibold mb-2 mt-6" style="text-align: center;"> MNIST Digit Recognition</h1>
+            <p class="text-center text-xl">You can generate multiple predicitions or single prediction for an image.</p>
+            <div id="content mx-1">
+    
+                <div class="lg:my-0 my-12 mx-auto space-y-">
+    
+                    <form action="/search" method="POST">
+                        {% csrf_token %}
+                        <div class="wrapper m-auto center w-60">
+                    <input multiple class="lg:w-60 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                        </div>
+
+                        <button type="button" class="w-60 h-18 text-xl text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mx-1 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Dark</button>    
+    
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    
+    
+    </div>
+    
+</body>
+</html>
