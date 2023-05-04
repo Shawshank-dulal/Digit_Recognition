@@ -4,14 +4,24 @@
 <main>
     <div class="container">
         <h1 class="text-center text-4xl font-semibold mt-6">MNIST Digit Recognition</h1>
-        <p class="text-center text-xl">You can generate multiple predictions or single prediction for an image.</p>
         <div class="mx-auto space-y-6 mt-8">
             <form action="/search" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="wrapper w-60 mx-auto">
-                    <input multiple class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" name="image" type="file">
+                <div class="mx-auto w-60 space-y-2">
+                    <label for="algorithm" class="block text-sm font-medium text-gray-700">Choose Algorithm:</label>
+                    <select id="algorithm" name="algorithm" class="block w-full py-2 pl-3 pr-10 text-base border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
+                        <option value="logistic_regression">Logistic Regression</option>
+                        <option value="knn">KNN</option>
+                        <option value="knn_hyper">KNN with Hyperparameter Tuning</option>
+                        <option value="decision_trees">Decision Trees</option>
+                        <option value="svm">SVM</option>
+                    </select>
+                    <label for="file_input" class="block text-sm font-medium text-gray-700">Choose File:</label>
+                    <div class="wrapper w-60 mx-auto">
+                        <input multiple class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" name="image" type="file">
+                    </div>
+                    <button type="submit" class="w-60 h-18 text-xl text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mx-1 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit</button>
                 </div>
-                <button type="submit" class="w-60 h-18 text-xl text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mx-1 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit</button>
             </form>
             {% if prediction %}
             <div class="mt-8">
@@ -23,4 +33,3 @@
     </div>
 </main>
 {% endblock %}
-
