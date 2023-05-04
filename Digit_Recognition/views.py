@@ -3,12 +3,17 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 import os
 
+
 def load_model(model):
     return load(model)
 
+
 model_save_dir = './exported_models'
+
+
 def getHome(request):
-    return render(request,'main.html')
+    return render(request, 'main.html')
+
 
 def getBestPrediction(request):
     if request.method == "POST":
@@ -37,12 +42,13 @@ def getBestPrediction(request):
         return render(request, 'main.html')
 
 
-
 def getAllPredictions(request):
     pass
 
+
 def about(request):
-    return render(request,'about.html')
+    return render(request, 'about.html')
+
 
 def analytics(request):
-    return render(request,'analytics.html')
+    return render(request, 'analytics.html')
