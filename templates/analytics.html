@@ -1,4 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>Analytics</h1>
+    <h1 class='text-center'>Analytics</h1>
+    <p class="text-center text-xl mb-3 mt-3">In this Section you can find the details about the models like their accuracy, precision, recall and f1-score.</p>
+    <hr style="width: 80%; margin:auto;">
+    <br>
+    {% for model in models_data %}
+        <div class='mx-3 mb-2'>
+            <h2 class='text-center text-xl font-semibold'>{{model.model}}</h2>
+            <div class='items-center flex justify-center'>
+            <div class="mx-3" >
+            <img  src="{% static model.image %}">
+            </div>
+            <div>
+            <table class="my-8 mx-3 float-right text-xl font-semibold " >
+                <tr>
+                <td >Accuracy:   </td>
+                <td>{{model.accuracy}}</td>
+                </tr>
+
+                <tr>
+                <td>Precision:   </td>
+                <td>{{model.precision}}</td>
+                </tr>
+                
+                <tr>
+                <td>Recall:   </td>
+                <td>{{model.recall}}</td>
+                </tr>
+
+                <tr>
+                <td>F1 Score:   </td>
+                <td>{{model.f1}}</td>
+                </tr>
+            </table>
+        </div>
+            </div>
+        <hr class='w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700'>
+</div>
+    {% endfor %}
 {% endblock %}
