@@ -1,3 +1,4 @@
 exported_models
 scaler.save
-media
+static
+Digit_Recognition/__pycache__

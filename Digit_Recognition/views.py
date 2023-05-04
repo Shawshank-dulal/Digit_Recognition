@@ -29,27 +29,25 @@ def getBestPrediction(request):
     if request.method == "POST":
         algorithm = request.POST.get('algorithm')
         images = request.FILES.getlist('image')
-        print(algorithm)
         predictions = []
         for image in images:
-            fs = FileSystemStorage(location='media/images')
+            fs = FileSystemStorage(location='static/images')
             filename = fs.save(image.name, image)
             file_url = fs.url(filename)
-            data=process_data(f'media/images{file_url}')
+            data=process_data(f'static/images{file_url}')
             if algorithm == 'all':
                 for saved_model in os.listdir(model_save_dir):
                     model = load_model(os.path.join(model_save_dir,saved_model))
-                    res = model.predict(data)
-                    print(res)
+                    res = model.predict(data)[0]
                     model_name = saved_model.split('.')[0]
-                    predictions.append({'image_dir':f'media/images{file_url}','model': model_name, 'prediction': res})
+                    predictions.append({'image_dir':file_url,'model': model_name, 'prediction': res})
             else:
                 model = load_model(os.path.join(model_save_dir,'KNN-CV.joblib'))
-                res = model.predict(data)
+                res = model.predict(data)[0]
                 model_name = ("KNN-CV")
                 
-                predictions.append({'image_dir':f'media/images{file_url}','model': model_name, 'prediction': res})
-
+                predictions.append({'image_dir':'images'+file_url,'model': model_name, 'prediction': res})
+        print(predictions)
         return render(request, 'main.html', {'predictions': predictions})
     else:
         return render(request, 'main.html')
